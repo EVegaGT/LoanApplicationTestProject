@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ExternalServiceProject/ExternalServiceProject.csproj" />
+  <Project Path="LoanTestProject/LoanTestProject.csproj" />
+</Solution>
