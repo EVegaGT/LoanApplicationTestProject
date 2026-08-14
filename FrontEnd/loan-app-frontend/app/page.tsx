@@ -15,8 +15,7 @@ export default function Home() {
               Request A New Loan
             </Button>
           </Link>
-
-        </h1>F
+        </h1>
       </main>
     </div>
   );
