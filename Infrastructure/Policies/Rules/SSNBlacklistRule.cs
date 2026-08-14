@@ -8,7 +8,7 @@ namespace Domain.Policies.Rules
     {
         //We mocked a list of blacklisted SSNs for demonstration purposes.
         //In a real-world scenario, this list would likely come from a database or external service.
-        private static readonly HashSet<string> ssnBlackList = new(StringComparer.OrdinalIgnoreCase) { "123-45-6789", "987-65-4321" };
+        private static readonly HashSet<string> ssnBlackList = new(StringComparer.OrdinalIgnoreCase) { "784096895", "987654321" };
 
         public Task<RuleDecisionResult> EvaluateAsync(Customer customer)
         {
