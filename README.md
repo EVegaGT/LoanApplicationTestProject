@@ -41,7 +41,7 @@ Alternatively, you can run both projects using the shared launch profile configu
 Open a terminal in the root of the solution and run the following command 
 
 ```bash
-cd loan-app-frontend
+cd FrontEnd\loan-app-frontend\
 npm install
 npm run dev
 ```
