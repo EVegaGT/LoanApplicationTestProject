@@ -12,6 +12,7 @@ namespace Infrastructure.DataBaseContext
         // Define DbSet properties for your entities
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Application> Applications { get; set; } = null!;
+        public DbSet<OutboxMessage> OutboxMessages { get; set; } = null!;
 
         // Fluent API configuration
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,12 +32,22 @@ namespace Infrastructure.DataBaseContext
 
             modelBuilder.Entity<Application>(entity =>
             {
+                entity.ToTable("Applications");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.RequestedAmount).IsRequired();
                 entity.HasOne(e => e.Customer)
                   .WithOne(c => c.Application)
                   .HasForeignKey<Application>(a => a.CustomerId) //A customer can have only one application
                   .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<OutboxMessage>(entity =>
+            {
+                entity.ToTable("OutboxMessages");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.EventType).IsRequired();
+                entity.Property(e => e.Payload).IsRequired();
+                entity.Property(e => e.CreatedAt).IsRequired();
             });
         }
     }

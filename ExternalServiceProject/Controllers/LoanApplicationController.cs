@@ -13,6 +13,13 @@ namespace ExternalServiceProject.Controllers
         public IActionResult Post([FromBody] LoanApplication application)
         {
             //This just an Mock external service, We will return Ok always
+            return Created();
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] LoanApplication application)
+        {
+            //This just an Mock external service, We will return Ok always
             return Ok();
         }
     }
