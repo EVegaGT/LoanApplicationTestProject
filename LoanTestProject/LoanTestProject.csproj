@@ -11,4 +11,9 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.16.18" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

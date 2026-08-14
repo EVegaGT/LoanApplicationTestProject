@@ -1,7 +1,7 @@
-﻿using LoanTestProject.Payload;
+﻿using ExternalServiceProject.Payloads;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoanTestProject.Controllers
+namespace ExternalServiceProject.Controllers
 {
 
     [Route("api/[controller]")]

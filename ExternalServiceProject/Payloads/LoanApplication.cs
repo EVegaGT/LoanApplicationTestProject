@@ -1,4 +1,4 @@
-﻿namespace LoanTestProject.Payload
+﻿namespace ExternalServiceProject.Payloads
 {
     public class LoanApplication
     {
