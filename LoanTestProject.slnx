@@ -3,6 +3,7 @@
     <Project Path="Application/Application.csproj" Id="103b1ad8-574d-439c-9f20-9031901f07f6" />
     <Project Path="Domain/Domain.csproj" Id="6aa264c2-611f-4d0c-8425-ced4348c48de" />
     <Project Path="Infrastructure/Infrastructure.csproj" Id="4cbf2642-43a9-4f1a-94ba-ee78e4fd2bf5" />
+    <Project Path="LoanTestProject.Tests/LoanTestProject.Tests.csproj" />
     <Project Path="LoanTestProject/LoanTestProject.csproj" />
   </Folder>
   <Project Path="ExternalServiceProject/ExternalServiceProject.csproj" />
