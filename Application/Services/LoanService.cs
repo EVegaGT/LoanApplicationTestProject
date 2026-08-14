@@ -8,10 +8,12 @@ namespace Application.Services
     public class LoanService : ILoanService
     {
         private readonly ILoadRepository _loadRepository;
+        private readonly ILoanRequestDecisionService _loanRequestDecisionService;
 
-        public LoanService(ILoadRepository loadRepository)
+        public LoanService(ILoadRepository loadRepository, ILoanRequestDecisionService loanRequestDecisionService)
         {
             _loadRepository = loadRepository;
+            _loanRequestDecisionService = loanRequestDecisionService;
         }
 
         public async Task<RequestLoanApplication?> GetCustomerBySSNAsync(string ssn)
@@ -30,7 +32,7 @@ namespace Application.Services
            );
         }
 
-        public async Task ProcessApplicationAsync(RequestLoanApplication request)
+        public async Task<ResponseResult> ProcessApplicationAsync(RequestLoanApplication request)
         {
             // check if customer exists
             var customer = await _loadRepository.GetCustomerBySsn(request.Ssn);
@@ -77,7 +79,15 @@ namespace Application.Services
                 }
             }
 
+            // Evaluate the loan application rules using the decision service
+            var decisionResult = await _loanRequestDecisionService.EvaluateLoanApplicationAsync(customer);
+            if (!decisionResult.IsApproved)
+            {
+                return ResponseResult.Failure(decisionResult.DenialReason);
+            }
+
             await _loadRepository.SaveApplicationTransactionAsync(customer);
+            return ResponseResult.Success();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Infrastructure.BackgroundJobs;
+﻿using Domain.Policies.Interfaces;
+using Domain.Policies.Rules;
+using Infrastructure.BackgroundJobs;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,10 @@ namespace Infrastructure
                 // ignore SSL certificate validation for local development (not recommended for production)
                 ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
             });
+
+            //register infrastructure rules
+            services.AddScoped<ILoanRuleEvaluator, SSNBlacklistRule>();
+
             return services;
         }
     }

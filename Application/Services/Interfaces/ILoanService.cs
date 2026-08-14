@@ -6,6 +6,6 @@ namespace Application.Services.Interfaces
     public interface ILoanService
     {
         Task<RequestLoanApplication?> GetCustomerBySSNAsync(string ssn);
-        Task ProcessApplicationAsync(RequestLoanApplication request);
+        Task<ResponseResult> ProcessApplicationAsync(RequestLoanApplication request);
     }
 }

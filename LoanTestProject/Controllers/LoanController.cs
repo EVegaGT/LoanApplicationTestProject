@@ -31,8 +31,27 @@ namespace LoanTestProject.Controllers
         [HttpPost("request")]
         public async Task<IActionResult> RequestLoan (RequestLoanApplication requestLoanApplication)
         {
-            await _loanService.ProcessApplicationAsync(requestLoanApplication);
-            return Ok();
+            try
+            {
+                var responseResult =  await _loanService.ProcessApplicationAsync(requestLoanApplication);
+                if (!responseResult.IsSuccess)
+                {
+                    // If the loan application is denied, return a 422 Unprocessable Entity response with the denial reason and a redirect URL.
+                    return UnprocessableEntity(new
+                    {
+                        status = "Denied",
+                        reason = responseResult.ErrorMessage,
+                    });
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Problem(
+                    detail: ex.Message,
+                    title: "An unexpected error occurred."
+                );
+            }
         }
     }
 }
