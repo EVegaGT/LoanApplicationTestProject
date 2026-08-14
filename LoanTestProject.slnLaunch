@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "LoanApplication ",
+    "Projects": [
+      {
+        "Path": "ExternalServiceProject\\ExternalServiceProject.csproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "LoanTestProject\\LoanTestProject.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
